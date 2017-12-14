@@ -21,15 +21,16 @@ class ChatBot:
         self.model.saver.restore(self.sess, ckpt.model_checkpoint_path)
 
     def run(self):
-        sys.stdout.write("> ")
+        sys.stdout.write("> Me: ")
         sys.stdout.flush()
         line = sys.stdin.readline()
 
         while line:
             print(self.get_replay(line.strip()))
 
-            sys.stdout.write("\n> ")
+            sys.stdout.write("\n> Me: ")
             sys.stdout.flush()
+
 
             line = sys.stdin.readline()
 
@@ -66,12 +67,14 @@ class ChatBot:
 
         reply = self.dialog.decode([dec_input], True)
 
-        return reply
+        return "Carl: " + reply
 
 
 def main(_):
-    print("깨어나는 중 입니다. 잠시만 기다려주세요...\n")
-
+    print("#########################################")
+    print("########## Starting Herobot... ##########")
+    print("##########    Wait Please...   ##########")
+    print("#########################################\n")
     chatbot = ChatBot(FLAGS.voc_path, FLAGS.train_dir)
     chatbot.run()
 
